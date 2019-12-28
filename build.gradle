@@ -35,4 +35,15 @@ dependencies {
     compile "io.ktor:ktor-server-core:$ktor_version"
     compile "io.ktor:ktor-gson:$ktor_version"
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
+    compile "org.jetbrains.exposed:exposed:$exposed_version"
+    compile "org.xerial:sqlite-jdbc:$sqlite_jdbc_version"
+}
+
+jar {
+    baseName 'co2_aggregate_system'
+    manifest {
+        attributes 'Main-Class': 'co2_aggregate_system.ApplicationKt'
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
